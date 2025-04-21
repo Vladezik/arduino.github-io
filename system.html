@@ -1,0 +1,197 @@
+<html lang="uk">
+<head>
+    <!-- Встановлення кодування UTF-8 для коректного відображення українських символів -->
+    <meta charset="UTF-8">
+    <!-- Налаштування адаптивного дизайну для різних пристроїв -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Заголовок сторінки, що відображається у вкладці браузера -->
+    <title>Принцип роботи | Система розумного освітлення</title>
+    <!-- Підключення зовнішнього CSS-файлу для стилізації сторінки -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Основна навігаційна панель з посиланнями на розділи сайту -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <!-- Активне посилання на поточну сторінку -->
+                <li><a href="system.html" class="active">Робота системи</a></li>
+                <li><a href="components.html">Компоненти</a></li>
+                <li><a href="scheme.html">Схема</a></li>
+                <li><a href="code.html">Програмний код</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний вміст сторінки -->
+    <main class="container">
+        <!-- Заголовок сторінки з підзаголовком -->
+        <header class="page-header">
+            <h1>Принцип роботи системи</h1>
+            <p class="subtitle">Детальний опис функціонування автоматизованого освітлення</p>
+        </header>
+
+        <!-- Секція, що описує кроки роботи системи -->
+        <section class="workflow-section">
+            <div class="workflow-steps">
+                <!-- Крок 1: Вимірювання освітленості -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Вимірювання освітленості</h3>
+                        <p>Фоторезистор постійно вимірює рівень природного освітлення в приміщенні. Система аналізує ці дані для визначення необхідності штучного освітлення.</p>
+                        <div class="step-image">
+                            <img src="image/light-sensor.jpg" alt="Фоторезистор">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Крок 2: Виявлення руху -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Виявлення руху</h3>
+                        <p>При недостатньому природному освітленні система активує датчики руху (PIR або ультразвукові). При виявленні руху в контрольованій зоні відправляється сигнал до контролера.</p>
+                        <div class="step-image">
+                            <img src="image/motion-sensor.jpg" alt="Датчик руху">
+                            <img src="image/ultrasonic-sensor.jpg" alt="Фоторезистор">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Крок 3: Активація освітлення -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Активація освітлення</h3>
+                        <p>Контролер (Arduino) отримує сигнал від датчиків і вмикає відповідне реле, яке живить світлодіодні лампи. Час роботи налаштовується (за замовчуванням - 5 хвилин).</p>
+                        <div class="step-image">
+                            <img src="image/relay-module.jpg" alt="Релейний модуль">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Крок 4: Візуалізація стану -->
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Візуалізація стану</h3>
+                        <p>На LCD дисплей виводиться інформація про стан кожної зони освітлення, час до автоматичного вимкнення та поточний рівень освітленості.</p>
+                        <div class="step-image">
+                            <img src="image/lcd-display.jpg" alt="LCD дисплей">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секція з логікою роботи системи -->
+        <section class="logic-section">
+            <h2>Логіка роботи системи</h2>
+            <div class="logic">
+                <!-- Зображення схем логіки роботи -->
+                <img src="image/logic1.png" alt="Схема логіки роботи" class="responsive-img">
+                <img src="image/logic2.png" alt="Схема логіки роботи" class="responsive-img">
+                <div class="legend">
+                    <ul>
+                        <h2>Список компонентів</h2>
+                        <!-- Таблиця з компонентами системи -->
+                        <div class="components-table-container">
+                            <table class="components-table">
+                                <thead>
+                                    <tr>
+                                        <th>Назва</th>
+                                        <th>Кількість</th>
+                                        <th>Компонент</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>U2</td>
+                                        <td>1</td>
+                                        <td>Arduino Uno R3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>R1</td>
+                                        <td>1</td>
+                                        <td>Фоторезистор</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DIST1</td>
+                                        <td>1</td>
+                                        <td>Ультразвуковий датчик відстані (4 виводи)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PIR1<br>PIR2<br>PIR3</td>
+                                        <td>3</td>
+                                        <td>Піроелектричний ІК-датчик</td>
+                                    </tr>
+                                    <tr>
+                                        <td>L1<br>L2<br>L3<br>L4<br>L5<br>L6<br>L7</td>
+                                        <td>7</td>
+                                        <td>Лампа розжарювання</td>
+                                    </tr>
+                                    <tr>
+                                        <td>K1<br>K2<br>K3<br>K4</td>
+                                        <td>4</td>
+                                        <td>Однополюсне реле</td>
+                                    </tr>
+                                    <tr>
+                                        <td>BAT1</td>
+                                        <td>1</td>
+                                        <td>Батарея 9 В</td>
+                                    </tr>
+                                    <tr>
+                                        <td>U3</td>
+                                        <td>1</td>
+                                        <td>На базі PCF8574, 39 (0x27) ЖК-екран 16 x 2 (I2C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>R2</td>
+                                        <td>1</td>
+                                        <td>1 kΩ Резистор</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секція з технічними характеристиками -->
+        <section class="technical-specs">
+            <h2>Технічні характеристики</h2>
+            <div class="specs-grid">
+                <!-- Картка з характеристиками чутливості -->
+                <div class="spec-card">
+                    <h3>Чутливість</h3>
+                    <ul>
+                        <li>Дальність виявлення руху: до 5 метрів</li>
+                        <li>Кут огляду датчиків: 110°</li>
+                        <li>Поріг освітленості: 550 люкс</li>
+                    </ul>
+                </div>
+                <!-- Картка з характеристиками таймінгів -->
+                <div class="spec-card">
+                    <h3>Таймінги</h3>
+                    <ul>
+                        <li>Час роботи після активації: 5 хв (налаштовується)</li>
+                        <li>Затримка між опитуваннями: 700 мс</li>
+                    </ul>
+                </div>
+                <!-- Картка з характеристиками живлення -->
+                <div class="spec-card">
+                    <h3>Живлення</h3>
+                    <ul>
+                        <li>Напруга: 5V DC</li>
+                        <li>Споживання: до 500mA</li>
+                        <li>Кількість каналів: 4</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

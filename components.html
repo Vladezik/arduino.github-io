@@ -1,0 +1,259 @@
+<html lang="uk">
+<head>
+    <!-- Встановлення кодування UTF-8 для коректного відображення українських символів -->
+    <meta charset="UTF-8">
+    <!-- Заголовок сторінки, що відображається у вкладці браузера -->
+    <title>Компоненти системи | Розумне освітлення</title>
+    <!-- Підключення зовнішнього CSS-файлу для стилізації сторінки -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Основна навігаційна панель з посиланнями на розділи сайту -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="system.html">Робота системи</a></li>
+                <!-- Активне посилання на поточну сторінку -->
+                <li><a href="components.html" class="active">Компоненти</a></li>
+                <li><a href="scheme.html">Схема</a></li>
+                <li><a href="code.html">Програмний код</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний вміст сторінки -->
+    <main class="container">
+        <!-- Заголовок сторінки з підзаголовком -->
+        <header class="page-header">
+            <h1>Компоненти системи</h1>
+            <p class="subtitle">Огляд всіх електронних компонентів та їх характеристик</p>
+        </header>
+
+        <!-- Вступний текст про компоненти системи -->
+        <section class="components-intro">
+            <p>Система розумного освітлення складається з наступних основних компонентів, які взаємодіють між собою для забезпечення автоматичного керування світлом.</p>
+        </section>
+
+        <!-- Секція з картками компонентів -->
+        <section class="components-grid">
+            <!-- Картка компонента Arduino Uno -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/arduino-uno.jpg" alt="Arduino Uno">
+                </div>
+                <div class="component-info">
+                    <h2>Arduino Uno</h2>
+                    <div class="specs">
+                        <p><strong>Мікроконтролер:</strong> ATmega328P</p>
+                        <p><strong>Тактова частота:</strong> 16 MHz</p>
+                        <p><strong>Напруга живлення:</strong> 5V</p>
+                        <p><strong>Цифрові піни:</strong> 14 (6 PWM)</p>
+                        <p><strong>Аналогові входи:</strong> 6</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Основний контролер системи, який керує всіма компонентами та виконує логіку роботи.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка PIR датчика руху -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/motion-sensor.jpg" alt="PIR датчик руху">
+                </div>
+                <div class="component-info">
+                    <h2>PIR датчик руху HC-SR501</h2>
+                    <div class="specs">
+                        <p><strong>Робоча напруга:</strong> 5V-20V</p>
+                        <p><strong>Струм споживання:</strong> 65mA</p>
+                        <p><strong>Дальність:</strong> до 7 метрів</p>
+                        <p><strong>Кут виявлення:</strong> 110°</p>
+                        <p><strong>Час затримки:</strong> 5-300 сек</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Пасивний інфрачервоний датчик для виявлення руху людей у контрольованій зоні.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка ультразвукового датника -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/ultrasonic-sensor.jpg" alt="Ультразвуковий датчик">
+                </div>
+                <div class="component-info">
+                    <h2>Ультразвуковий датчик HC-SR04</h2>
+                    <div class="specs">
+                        <p><strong>Робоча напруга:</strong> 5V</p>
+                        <p><strong>Робочий струм:</strong> 15mA</p>
+                        <p><strong>Дальність:</strong> 2-400 см</p>
+                        <p><strong>Кут вимірювання:</strong> 15°</p>
+                        <p><strong>Точність:</strong> 3 мм</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Використовується для точного визначення відстані до об'єктів у важкодоступних місцях.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка релейного модуля -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/relay-module.jpg" alt="Релейний модуль">
+                </div>
+                <div class="component-info">
+                    <h2>Релейний модуль 4-канальний</h2>
+                    <div class="specs">
+                        <p><strong>Кількість каналів:</strong> 4</p>
+                        <p><strong>Напруга керування:</strong> 5V</p>
+                        <p><strong>Комутований струм:</strong> 10A/250VAC</p>
+                        <p><strong>Оптомеханічне реле:</strong> 10A 250VAC/30VDC</p>
+                        <p><strong>Споживаний струм:</strong> 70mA</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Використовується для керування світлодіодними лампами через Arduino.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка LCD дисплея -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/lcd-display.jpg" alt="LCD дисплей I2C">
+                </div>
+                <div class="component-info">
+                    <h2>LCD дисплей 16x2 I2C</h2>
+                    <div class="specs">
+                        <p><strong>Розмір:</strong> 16x2 символів</p>
+                        <p><strong>Інтерфейс:</strong> I2C</p>
+                        <p><strong>Адреса:</strong> 0x27</p>
+                        <p><strong>Напруга живлення:</strong> 5V</p>
+                        <p><strong>Підсвітка:</strong> Так</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Виводить інформацію про стан системи та час роботи кожного датчика.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка фоторезистора -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/light-sensor.jpg" alt="Фоторезистор">
+                </div>
+                <div class="component-info">
+                    <h2>Фоторезистор GL5528</h2>
+                    <div class="specs">
+                        <p><strong>Опір в темряві:</strong> 1MΩ</p>
+                        <p><strong>Опір на світлі:</strong> 8-20KΩ</p>
+                        <p><strong>Чутливість:</strong> 0.8s</p>
+                        <p><strong>Робоча температура:</strong> -30°C ~ +70°C</p>
+                        <p><strong>Діапазон довжин хвиль:</strong> 400-800nm</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Визначає рівень природного освітлення для виключення системи вдень.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Картка блоку живлення -->
+            <div class="component-card">
+                <div class="component-image">
+                    <img src="image/power-supply.jpg" alt="Блок живлення">
+                </div>
+                <div class="component-info">
+                    <h2>Блок живлення 5V 2A</h2>
+                    <div class="specs">
+                        <p><strong>Вихідна напруга:</strong> 5V DC</p>
+                        <p><strong>Вихідний струм:</strong> 2A</p>
+                        <p><strong>Вхідна напруга:</strong> 100-240V AC</p>
+                        <p><strong>ККД:</strong> >80%</p>
+                        <p><strong>Захист:</strong> від перегрузки, КЗ</p>
+                    </div>
+                    <div class="component-desc">
+                        <p>Забезпечує стабільне живлення всієї системи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секція з таблицею технічних характеристик -->
+        <section class="components-table">
+            <h2>Технічні характеристики компонентів</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Компонент</th>
+                            <th>Модель</th>
+                            <th>Напруга</th>
+                            <th>Струм</th>
+                            <th>Кількість</th>
+                            <th>Призначення</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arduino Uno</td>
+                            <td>R3</td>
+                            <td>5V</td>
+                            <td>500mA</td>
+                            <td>1</td>
+                            <td>Основний контролер</td>
+                        </tr>
+                        <tr>
+                            <td>PIR датчик</td>
+                            <td>HC-SR501</td>
+                            <td>5-12V</td>
+                            <td>65mA</td>
+                            <td>3</td>
+                            <td>Виявлення руху</td>
+                        </tr>
+                        <tr>
+                            <td>УЗ датчик</td>
+                            <td>HC-SR04</td>
+                            <td>5V</td>
+                            <td>15mA</td>
+                            <td>1</td>
+                            <td>Вимірювання відстані</td>
+                        </tr>
+                        <tr>
+                            <td>Релейний модуль</td>
+                            <td>4-канальний</td>
+                            <td>5V</td>
+                            <td>70mA</td>
+                            <td>1</td>
+                            <td>Керування лампами</td>
+                        </tr>
+                        <tr>
+                            <td>LCD дисплей</td>
+                            <td>1602 I2C</td>
+                            <td>5V</td>
+                            <td>20mA</td>
+                            <td>1</td>
+                            <td>Візуалізація стану</td>
+                        </tr>
+                        <tr>
+                            <td>Фоторезистор</td>
+                            <td>GL5528</td>
+                            <td>3.3-5V</td>
+                            <td>1mA</td>
+                            <td>1</td>
+                            <td>Вимірювання освітленості</td>
+                        </tr>
+                        <tr>
+                            <td>Блок живлення</td>
+                            <td>5V 2A</td>
+                            <td>5V</td>
+                            <td>2A</td>
+                            <td>1</td>
+                            <td>Живлення системи</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

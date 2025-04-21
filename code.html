@@ -1,0 +1,454 @@
+<html lang="uk">
+<head>
+    <!-- Основні мета-теги -->
+    <meta charset="UTF-8">
+    <title>Програмний код | Система розумного освітлення</title>
+    <!-- Підключення CSS стилів -->
+    <link rel="stylesheet" href="style.css"> <!-- Основний CSS файл -->
+    <!-- Підключення стилів для підсвітки синтаксису від highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <!-- Підключення скриптів для підсвітки синтаксису -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/arduino.min.js"></script>
+    <script>hljs.highlightAll();</script> <!-- Ініціалізація підсвітки -->
+    
+    <!-- Внутрішні стилі для сторінки -->
+    <style>
+        /* Стилі для секції з кодом */
+        .code-section {
+            background: #282c34; /* Темний фон */
+            border-radius: 8px; /* Закруглені кути */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Тінь */
+            overflow: hidden; /* Обрізання вмісту */
+            margin-bottom: 40px; /* Відступ знизу */
+        }
+        
+        /* Стилі для заголовка блоку коду */
+        .code-header {
+            background: #1e2227; /* Темніший фон */
+            padding: 12px 20px; /* Відступи всередині */
+            display: flex; /* Гнучкий контейнер */
+            justify-content: space-between; /* Розміщення елементів */
+            align-items: center; /* Вирівнювання по центру */
+            border-bottom: 1px solid #3b4048; /* Роздільна лінія */
+        }
+        
+        /* Стилі для заголовка коду */
+        .code-title {
+            font-family: 'Montserrat', sans-serif; /* Шрифт */
+            color: #abb2bf; /* Колір тексту */
+            font-size: 1rem; /* Розмір шрифту */
+            margin: 0; /* Відступи */
+        }
+        
+        /* Стилі для кнопки копіювання */
+        .copy-btn {
+            background: #3b4048; /* Колір фону */
+            color: #abb2bf; /* Колір тексту */
+            border: none; /* Без рамки */
+            padding: 5px 12px; /* Відступи */
+            border-radius: 4px; /* Закруглені кути */
+            cursor: pointer; /* Курсор-вказівник */
+            font-family: 'Roboto', sans-serif; /* Шрифт */
+            font-size: 0.9rem; /* Розмір шрифту */
+            transition: all 0.3s; /* Плавні анімації */
+        }
+        
+        /* Стилі для кнопки копіювання при наведенні */
+        .copy-btn:hover {
+            background: #4f5660; /* Колір фону */
+            color: white; /* Колір тексту */
+        }
+        
+        /* Стилі для кнопки після копіювання */
+        .copy-btn.copied {
+            background: #4CAF50; /* Зелений колір */
+            color: white; /* Білий текст */
+        }
+        
+        /* Стилі для блоку з кодом */
+        pre {
+            margin: 0; /* Відступи */
+            padding: 0; /* Відступи */
+        }
+        
+        /* Стилі для тексту коду */
+        code {
+            font-family: 'Source Code Pro', monospace; /* Моноширинний шрифт */
+            font-size: 0.95rem; /* Розмір шрифту */
+            line-height: 1.5; /* Висота рядка */
+        }
+        
+        /* Стилі для підсвітки синтаксису */
+        .hljs {
+            background: #282c34; /* Темний фон */
+            padding: 20px; /* Відступи */
+        }
+    </style>
+</head>
+<body>
+    <!-- Навігаційне меню -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="system.html">Робота системи</a></li>
+                <li><a href="components.html">Компоненти</a></li>
+                <li><a href="scheme.html">Схема</a></li>
+                <li><a href="code.html" class="active">Програмний код</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний вміст сторінки -->
+    <main class="container">
+        <!-- Заголовок сторінки -->
+        <header class="page-header">
+            <h1>Програмний код системи</h1>
+            <p class="subtitle">Повна реалізація логіки роботи на Arduino IDE</p>
+        </header>
+
+        <!-- Вступний розділ -->
+        <section class="code-intro">
+            <div class="intro-content">
+                <p>Цей код реалізує всю логіку роботи системи розумного освітлення, включаючи:</p>
+                <ul>
+                    <li>Опитування датчиків руху та освітленості</li>
+                    <li>Керування релейними модулями</li>
+                    <li>Відображення інформації на LCD дисплеї</li>
+                    <li>Таймери автоматичного вимкнення</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Розділ з повним кодом -->
+        <section class="full-code">
+            <h2>Повний код програми</h2>
+            
+            <!-- Блок з кодом Arduino -->
+            <div class="code-section">
+                <div class="code-header">
+                    <h3 class="code-title">smart-lighting.ino</h3>
+                    <button class="copy-btn" onclick="copyCode('fullCode')">Копіювати код</button>
+                </div>
+                <pre><code id="fullCode" class="language-arduino">// Підключення необхідних бібліотек
+#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+// Ініціалізація LCD дисплея за адресою 0x27 з розміром 16x2
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+// Піни для сенсорів та реле
+const int irSensorPins[] = {11, 10, 9}; // Піни для ІЧ-датчиків
+const int relayPins[] = {5, 2, 3};      // Піни для керування реле
+const int trigPin = 12;                 // Пін тригера для ультразвукового сенсора
+const int echoPin = 13;                 // Пін ехосигналу для ультразвукового сенсора
+const int relay4Pin = 4;                // Пін для четвертого реле
+const int lightSensorPin = A0;          // Пін для фоторезистора
+
+// Налаштування системи
+const int distanceThreshold = 100;      // Максимальна відстань для активації (см)
+const int countdownTime = 300;          // Час роботи реле (в секундах)
+
+// Таймери для кожної лампи
+int lampTimers[4] = {countdownTime, countdownTime, countdownTime, countdownTime};
+bool lampActive[4] = {false, false, false, false};       // Стан ламп
+bool updateLCDFlags[4] = {false, false, false, false};   // Прапори для оновлення LCD
+int lastLightLevel = -1;                                 // Збереження останнього рівня освітленості
+
+// Функція налаштування (виконується один раз при запуску)
+void setup() {
+  lcd.init();           // Ініціалізація LCD
+  lcd.backlight();      // Увімкнення підсвітки
+  initializeLCD();      // Ініціалізація тексту на LCD
+
+  // Налаштування пінів для сенсорів і реле
+  for (int i = 0; i < 3; i++) {
+    pinMode(irSensorPins[i], INPUT);          // ІЧ-датчики як вхід
+    pinMode(relayPins[i], OUTPUT);           // Реле як вихід
+    digitalWrite(relayPins[i], LOW);         // Вимкнення реле
+  }
+
+  pinMode(trigPin, OUTPUT);                  // Триггер ультразвукового сенсора
+  pinMode(echoPin, INPUT);                   // Ехо ультразвукового сенсора
+  pinMode(relay4Pin, OUTPUT);                // Четверте реле
+  digitalWrite(relay4Pin, LOW);              // Вимкнення четвертого реле
+
+  Serial.begin(9600);                        // Початок серійного зв'язку
+}
+
+// Головний цикл програми (виконується постійно)
+void loop() {
+  // Зчитування рівня освітленості з фоторезистора
+  int lightLevel = analogRead(lightSensorPin);  
+  int scaledLightLevel = map(lightLevel, 6, 679, 0, 1023); 
+  scaledLightLevel = constrain(scaledLightLevel, 0, 1023);
+
+  // Виведення рівня освітленості в консоль
+  if (scaledLightLevel != lastLightLevel) {
+    Serial.print("Light: ");
+    Serial.println(scaledLightLevel);
+    lastLightLevel = scaledLightLevel;
+  }
+
+  // Перевірка кожного ІЧ-датчика
+  for (int i = 0; i < 3; i++) {
+    if (digitalRead(irSensorPins[i]) == HIGH) { // Якщо спрацював датчик
+      if (scaledLightLevel < 550) { // Лампи працюють лише в темряві
+        if (i == 2) { 
+          activateRelay(1, true);  // Активуємо лампу 2
+          activateRelay(2, true);  // Активуємо лампу 3
+          synchronizeTimers(1, 2); // Синхронізація таймерів
+        } else {
+          activateRelay(i, true); // Активуємо інші лампи
+        }
+      }
+    }
+  }
+
+  // Перевірка ультразвукового сенсора
+  if (getDistance() <= distanceThreshold && scaledLightLevel < 550) { 
+    activateRelay(3, true); // Активуємо четверту лампу
+  }
+
+  // Оновлення таймерів та LCD
+  updateTimers();
+  updateLCD();
+
+  delay(700); // Затримка для стабільності
+}
+
+/* Активація реле */
+void activateRelay(int lampIndex, bool resetTimer) {
+  if (lampIndex < 0 || lampIndex >= 4) return; // Перевірка коректності індексу
+
+  if (lampIndex < 3) {
+    digitalWrite(relayPins[lampIndex], HIGH); // Увімкнення реле
+  } else {
+    digitalWrite(relay4Pin, HIGH); // Увімкнення четвертого реле
+  }
+
+  if (resetTimer) {
+    lampTimers[lampIndex] = countdownTime; // Скидання таймера
+  }
+
+  lampActive[lampIndex] = true;          // Вказуємо, що лампа активна
+  updateLCDFlags[lampIndex] = true;      // Оновлення LCD
+}
+
+/* Синхронізація таймерів */
+void synchronizeTimers(int index1, int index2) {
+  if (index1 < 0 || index2 < 0 || index1 >= 4 || index2 >= 4) return;
+
+  lampTimers[index2] = lampTimers[index1] = countdownTime;
+  lampActive[index1] = lampActive[index2] = true;
+  updateLCDFlags[index1] = updateLCDFlags[index2] = true;
+}
+
+/* Оновлення таймерів */
+void updateTimers() {
+  for (int i = 0; i < 4; i++) {
+    if (lampActive[i]) {
+      lampTimers[i]--;
+      if (lampTimers[i] <= 0) {
+        deactivateRelay(i); // Вимкнення лампи
+      } else {
+        updateLCDFlags[i] = true; // Оновлення LCD
+      }
+    }
+  }
+}
+
+/* Деактивація реле */
+void deactivateRelay(int lampIndex) {
+  if (lampIndex < 0 || lampIndex >= 4) return;
+
+  if (lampIndex < 3) {
+    digitalWrite(relayPins[lampIndex], LOW); // Вимкнення реле
+  } else {
+    digitalWrite(relay4Pin, LOW); // Вимкнення четвертого реле
+  }
+
+  lampActive[lampIndex] = false;        // Лампа неактивна
+  lampTimers[lampIndex] = countdownTime; // Скидання таймера
+  updateLCDFlags[lampIndex] = true;     // Оновлення LCD
+}
+
+/* Ініціалізація LCD */
+void initializeLCD() {
+  lcd.setCursor(0, 0);
+  lcd.print("L1:5:00 L2:5:00");
+  lcd.setCursor(0, 1);
+  lcd.print("L3:5:00 L4:5:00");
+}
+
+/* Оновлення дисплея */
+void updateLCD() {
+  for (int i = 0; i < 4; i++) {
+    if (updateLCDFlags[i]) {
+      int minutes = lampTimers[i] / 60;
+      int seconds = lampTimers[i] % 60;
+
+      int row = i / 2;
+      int col = (i % 2) * 8 + 3;
+
+      static int lastMinutes[4] = {-1, -1, -1, -1};
+      if (lastMinutes[i] != minutes) {
+        lcd.setCursor(col, row);
+        lcd.print(minutes);
+        lcd.print(":");
+        lastMinutes[i] = minutes;
+      }
+
+      lcd.setCursor(col + 2, row);
+      if (seconds < 10) lcd.print("0");
+      lcd.print(seconds);
+
+      updateLCDFlags[i] = false;
+    }
+  }
+}
+
+/* Вимірювання відстані ультразвуковим датчиком */
+int getDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  long duration = pulseIn(echoPin, HIGH);
+  return duration * 0.034 / 2; // Перетворення у сантиметри
+}
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Розділ з поясненням ключових функцій -->
+        <section class="code-explanation">
+            <h2>Пояснення ключових функцій</h2>
+            
+            <div class="explanation-grid">
+                <!-- Картка з поясненням функції setup() -->
+                <div class="explanation-card">
+                    <h3>setup()</h3>
+                    <p>Ініціалізує всі компоненти системи:</p>
+                    <ul>
+                        <li>Налаштовує режими пінів (INPUT/OUTPUT)</li>
+                        <li>Вмикає LCD дисплей</li>
+                        <li>Запускає серійний монітор для налагодження</li>
+                    </ul>
+                </div>
+                
+                <!-- Картка з поясненням функції loop() -->
+                <div class="explanation-card">
+                    <h3>loop()</h3>
+                    <p>Головний цикл програми, який постійно виконується:</p>
+                    <ul>
+                        <li>Зчитує дані з датчиків</li>
+                        <li>Приймає рішення про вмикання/вимикання світла</li>
+                        <li>Оновлює таймери та інформацію на дисплеї</li>
+                    </ul>
+                </div>
+                
+                <!-- Картка з поясненням функції activateRelay() -->
+                <div class="explanation-card">
+                    <h3>activateRelay()</h3>
+                    <p>Вмикає відповідне реле:</p>
+                    <ul>
+                        <li>Перевіряє коректність індексу лампи</li>
+                        <li>Встановлює високий рівень на відповідному піні</li>
+                        <li>Скидає таймер при необхідності</li>
+                    </ul>
+                </div>
+                
+                <!-- Картка з поясненням функції updateLCD() -->
+                <div class="explanation-card">
+                    <h3>updateLCD()</h3>
+                    <p>Оновлює інформацію на дисплеї:</p>
+                    <ul>
+                        <li>Відображає час роботи кожної лампи</li>
+                        <li>Форматує вивід у форматі ХХ:ХХ</li>
+                        <li>Оновлює лише змінені значення</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Розділ з інформацією про серійний монітор -->
+        <section class="serial-monitor">
+            <h2>Робота з серійним монітором</h2>
+            <div class="serial-content">
+                <div class="serial-text">
+                    <p>Для налагодження системи використовується серійний монітор Arduino IDE (Ctrl+Shift+M).</p>
+                    <p>Код виводить такі дані:</p>
+                    <ul>
+                        <li>Поточний рівень освітленості (0-1023)</li>
+                        <li>Стан кожного датчика руху</li>
+                        <li>Помилки (якщо є)</li>
+                    </ul>
+                    <p>Для налаштування системи можна змінювати параметри:</p>
+                    <ul>
+                        <li><code>distanceThreshold</code> - чутливість УЗ датчика</li>
+                        <li><code>countdownTime</code> - час роботи ламп</li>
+                        <li><code>scaledLightLevel</code> - поріг освітленості</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<!-- Скрипт для копіювання коду -->
+<script>
+  /**
+   * Функція для копіювання вмісту елемента у буфер обміну
+   * @param {string} elementId - ID елемента, текст якого потрібно скопіювати
+   */
+  function copyCode(elementId) {
+      // Отримуємо елемент з кодом за його ID
+      const codeElement = document.getElementById(elementId);
+      
+      // Створюємо новий об'єкт Range (діапазон виділення)
+      const range = document.createRange();
+      
+      // Вибираємо вміст елемента як діапазон виділення
+      range.selectNode(codeElement);
+      
+      // Видаляємо всі попередні виділення (якщо такі є)
+      window.getSelection().removeAllRanges();
+      
+      // Додаємо новий діапазон до виділення
+      window.getSelection().addRange(range);
+      
+      try {
+          // Виконуємо команду копіювання
+          const successful = document.execCommand('copy');
+          
+          // Отримуємо кнопку, яка викликала цю функцію
+          const button = event.target;
+          
+          // Якщо копіювання пройшло успішно
+          if (successful) {
+              // Змінюємо текст кнопки на "Скопійовано!"
+              button.textContent = 'Скопійовано!';
+              
+              // Додаємо клас для візуального підтвердження (наприклад, зміна кольору)
+              button.classList.add('copied');
+              
+              // Через 2 секунди повертаємо початковий стан кнопки
+              setTimeout(() => {
+                  button.textContent = 'Копіювати код';
+                  button.classList.remove('copied');
+              }, 2000);
+          }
+      } catch (err) {
+          // У разі помилки виводимо її в консоль
+          console.error('Помилка копіювання: ', err);
+      }
+      
+      // Очищаємо виділення після копіювання
+      window.getSelection().removeAllRanges();
+  }
+</script>
+</body>
+</html>

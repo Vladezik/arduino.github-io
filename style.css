@@ -1,0 +1,335 @@
+/* Основні налаштування (змінні) */
+:root {
+    --primary: #2c3e50;       /* Основний колір (темно-синій) */
+    --secondary: #3498db;     /* Вторинний колір (блакитний) */
+    --accent: #e74c3c;        /* Акцентний колір (червоний) */
+    --light: #ecf0f1;         /* Світлий колір (світло-сірий) */
+    --dark: #2c3e50;          /* Темний колір (темно-синій) */
+    --text: #333;             /* Колір тексту (темно-сірий) */
+    --bg: #f9f9f9;            /* Колір фону (дуже світлий сірий) */
+    --shadow: 0 4px 6px rgba(0,0,0,0.1); /* Тінь за замовчуванням */
+    --radius: 8px;            /* Радіус скруглення кутів */
+    --transition: all 0.3s ease; /* Плавні переходи */
+}
+
+/* Скидання стилів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Розміри включають padding та border */
+}
+
+/* Основні стилі body */
+body {
+    font-family: 'Roboto', sans-serif; /* Основний шрифт */
+    line-height: 1.6;                 /* Міжрядковий інтервал */
+    color: var(--text);               /* Колір тексту */
+    background: var(--bg);            /* Колір фону */
+}
+
+/* Контейнер для контенту */
+.container {
+    width: 90%;               /* Ширина контейнера */
+    max-width: 1200px;        /* Максимальна ширина */
+    margin: 0 auto;           /* Центрування */
+    padding: 0 15px;          /* Внутрішні відступи */
+}
+
+/* Стилі для шапки (hero section) */
+.hero {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Градієнтний фон */
+    color: white;             /* Колір тексту */
+    padding: 100px 0;         /* Внутрішні відступи */
+    text-align: center;       /* Вирівнювання тексту по центру */
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif; /* Шрифт для заголовка */
+    font-size: 2.8rem;        /* Розмір шрифту */
+    margin-bottom: 15px;      /* Відступ знизу */
+}
+
+.subtitle {
+    font-size: 1.5rem;        /* Розмір шрифту */
+    opacity: 0.9;             /* Прозорість */
+}
+
+/* Навігаційне меню */
+.main-nav {
+    background: var(--dark);  /* Колір фону */
+    position: sticky;         /* Липке меню */
+    top: 0;                   /* Прикріплене до верху */
+    z-index: 1000;            /* Високий z-index для перекриття */
+    box-shadow: var(--shadow); /* Тінь */
+}
+
+.main-nav ul {
+    display: flex;            /* Гнучкий контейнер */
+    justify-content: center;  /* Центрування по горизонталі */
+    list-style: none;        /* Видалення маркерів списку */
+    flex-wrap: wrap;          /* Перенесення елементів на малих екранах */
+}
+
+.main-nav a {
+    color: white;            /* Колір тексту */
+    text-decoration: none;   /* Видалення підкреслення */
+    padding: 15px 20px;      /* Внутрішні відступи */
+    display: block;          /* Блочний елемент */
+    transition: var(--transition); /* Плавний перехід */
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: var(--secondary); /* Колір при наведенні/активному стані */
+}
+
+/* Стилі для основних секцій */
+section {
+    margin: 60px 0;          /* Зовнішні відступи */
+    padding: 30px;           /* Внутрішні відступи */
+    background: white;       /* Колір фону */
+    border-radius: var(--radius); /* Скруглені кути */
+    box-shadow: var(--shadow);    /* Тінь */
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif; /* Шрифт для заголовка */
+    color: var(--primary);   /* Колір тексту */
+    margin-bottom: 30px;     /* Відступ знизу */
+    text-align: center;      /* Вирівнювання по центру */
+    position: relative;      /* Відносне позиціонування */
+    padding-bottom: 15px;    /* Відступ знизу */
+}
+
+h2::after {
+    content: '';             /* Псевдоелемент для підкреслення */
+    position: absolute;      /* Абсолютне позиціонування */
+    bottom: 0;               /* Прикріплене до низу */
+    left: 50%;               /* Центрування по горизонталі */
+    transform: translateX(-50%); /* Точне центрування */
+    width: 80px;             /* Ширина лінії */
+    height: 3px;             /* Висота лінії */
+    background: var(--secondary); /* Колір лінії */
+}
+
+/* Стилі для сіток (grid) */
+.features-grid, .specs-grid, .safety-cards {
+    display: grid;                              /* Використання CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Адаптивні колонки */
+    gap: 30px;                                  /* Відступи між елементами */
+    margin-top: 30px;                           /* Відступ зверху */
+}
+
+.feature-card, .spec-card, .safety-card {
+    padding: 25px;                              /* Внутрішні відступи */
+    background: var(--light);                   /* Колір фону */
+    border-radius: var(--radius);               /* Скруглені кути */
+    transition: var(--transition);              /* Плавний перехід */
+}
+
+.feature-card:hover, .spec-card:hover, .safety-card:hover {
+    transform: translateY(-5px);                /* Ефект підняття */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);   /* Тінь при наведенні */
+}
+
+/* Стилі для відео */
+.video-wrapper {
+    margin-top: 30px;                           /* Відступ зверху */
+    border-radius: var(--radius);               /* Скруглені кути */
+    overflow: hidden;                           /* Обрізання контенту */
+    box-shadow: var(--shadow);                  /* Тінь */
+}
+
+video {
+    width: 100%;                                /* Ширина на всю ширину */
+    display: block;                             /* Блочний елемент */
+}
+
+/* Стилі для таблиць */
+.components-table-container {
+    overflow-x: auto;                           /* Горизонтальна прокрутка */
+    margin: 30px 0;                             /* Відступи */
+    box-shadow: var(--shadow);                  /* Тінь */
+    border-radius: var(--radius);               /* Скруглені кути */
+}
+
+.components-table {
+    width: 100%;                                /* Ширина таблиці */
+    border-collapse: collapse;                  /* Злиття границь */
+    background: white;                          /* Колір фону */
+}
+
+.components-table th, .components-table td {
+    padding: 12px 15px;                         /* Внутрішні відступи */
+    text-align: left;                           /* Вирівнювання тексту */
+    border-bottom: 1px solid #ddd;              /* Границя знизу */
+}
+
+.components-table th {
+    background: var(--primary);                 /* Колір фону заголовків */
+    color: white;                              /* Колір тексту */
+    font-weight: 500;                          /* Напівжирний шрифт */
+}
+
+.components-table tr:nth-child(even) {
+    background-color: #f8f8f8;                  /* Колір фону парних рядків */
+}
+
+.components-table tr:hover {
+    background-color: #f1f1f1;                  /* Колір фону при наведенні */
+}
+
+/* Специфічні стилі для таблиці компонентів */
+.components-table td {
+    vertical-align: top;                        /* Вирівнювання по верху */
+}
+
+/* Стилі для зображень у кроках */
+.step-image {
+    display: flex;
+    justify-content: center;                    /* Центрування по горизонталі */
+    align-items: center;                       /* Центрування по вертикалі */
+    margin: 15px auto 0;                       /* Відступи */
+}
+
+.step-image img {
+    max-width: 250px;                           /* Максимальна ширина */
+    height: auto;                              /* Автоматична висота */
+    border-radius: var(--radius);               /* Скруглені кути */
+    box-shadow: var(--shadow);                  /* Тінь */
+    display: block;                            /* Блочний елемент */
+}
+
+/* Стилі для головного зображення */
+.feature-img {
+    max-width: 100%;                           /* Максимальна ширина */
+    height: auto;                              /* Автоматична висота */
+    border-radius: var(--radius);              /* Скруглені кути */
+    box-shadow: var(--shadow);                 /* Тінь */
+    display: block;                           /* Блочний елемент */
+    margin: 0 auto;                           /* Центрування */
+}
+
+/* Стилі для колонок */
+.columns {
+    display: flex;                             /* Гнучкий контейнер */
+    gap: 30px;                                 /* Відступи між колонками */
+    align-items: center;                       /* Вирівнювання по вертикалі */
+}
+
+.column {
+    flex: 1;                                   /* Рівномірний розподіл простору */
+}
+
+/* Стилі для сітки компонентів */
+.components-grid {
+    display: grid;                             /* Використання CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивні колонки */
+    gap: 30px;                                 /* Відступи між елементами */
+    margin-top: 30px;                          /* Відступ зверху */
+}
+
+.component-image img {
+    max-width: 250px;                          /* Максимальна ширина */
+    height: auto;                             /* Автоматична висота */
+    max-height: 200px;                        /* Максимальна висота */
+    object-fit: contain;                      /* Збереження пропорцій */
+    border-radius: var(--radius);             /* Скруглені кути */
+    box-shadow: var(--shadow);                /* Тінь */
+    display: block;                          /* Блочний елемент */
+    margin: 0 auto;                          /* Центрування */
+}
+
+.component-info {
+    padding: 20px;                           /* Внутрішні відступи */
+}
+
+.component-info h2 {
+    font-family: 'Montserrat', sans-serif;   /* Шрифт для заголовка */
+    color: var(--primary);                  /* Колір тексту */
+    margin-bottom: 15px;                    /* Відступ знизу */
+    text-align: left;                       /* Вирівнювання по лівому краю */
+    font-size: 1.5rem;                      /* Розмір шрифту */
+}
+
+.component-info h2::after {
+    display: none;                          /* Приховує підкреслення */
+}
+
+.specs {
+    margin: 15px 0;                         /* Відступи */
+}
+
+.specs p {
+    margin-bottom: 8px;                     /* Відступ знизу */
+    font-size: 0.95rem;                     /* Розмір шрифту */
+}
+
+.specs strong {
+    color: var(--primary);                  /* Колір для виділення */
+}
+
+.component-desc {
+    font-size: 0.95rem;                     /* Розмір шрифту */
+    line-height: 1.5;                       /* Міжрядковий інтервал */
+}
+
+/* Стилі для таблиці розводки Arduino */
+.pinout-table-container {
+    overflow-x: auto;                       /* Горизонтальна прокрутка */
+    margin: 30px 0;                        /* Відступи */
+    box-shadow: var(--shadow);             /* Тінь */
+    border-radius: var(--radius);          /* Скруглені кути */
+}
+
+.pinout-table {
+    width: 100%;                           /* Ширина таблиці */
+    border-collapse: collapse;             /* Злиття границь */
+    background: white;                     /* Колір фону */
+    font-size: 0.95rem;                   /* Розмір шрифту */
+}
+
+.pinout-table th, .pinout-table td {
+    padding: 12px 15px;                    /* Внутрішні відступи */
+    text-align: left;                      /* Вирівнювання тексту */
+    border-bottom: 1px solid #ddd;         /* Границя знизу */
+}
+
+.pinout-table th {
+    background: var(--primary);            /* Колір фону заголовків */
+    color: white;                         /* Колір тексту */
+    font-weight: 500;                     /* Напівжирний шрифт */
+    position: sticky;                     /* Липкий заголовок */
+    top: 0;                               /* Прикріплення до верху */
+}
+
+.pinout-table tr:nth-child(even) {
+    background-color: #f8f8f8;            /* Колір фону парних рядків */
+}
+
+.pinout-table tr:hover {
+    background-color: #f1f1f1;            /* Колір фону при наведенні */
+}
+
+/* Стилі для секції з інструкцією підключення */
+.connection-steps {
+    display: grid;                        /* Використання CSS Grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Адаптивні колонки */
+    gap: 20px;                           /* Відступи між елементами */
+}
+
+.connection-step {
+    background: var(--light);            /* Колір фону */
+    padding: 20px;                       /* Внутрішні відступи */
+    border-radius: var(--radius);        /* Скруглені кути */
+    box-shadow: var(--shadow);           /* Тінь */
+}
+
+.connection-step h3 {
+    color: var(--primary);               /* Колір тексту */
+    margin-bottom: 15px;                 /* Відступ знизу */
+    font-size: 1.2rem;                   /* Розмір шрифту */
+}
+
+.connection-step ol {
+    padding-left: 20px;                  /* Відступ для списку */
+}
